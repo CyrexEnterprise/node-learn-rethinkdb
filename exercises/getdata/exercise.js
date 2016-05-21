@@ -12,7 +12,7 @@ exercise = execute(exercise)
 
 exercise = comparestdout(exercise)
 
-function load_data(conn) {
+function load_data(conn, cb) {
   r.db('toolbox').table('screws').insert([
     {
       "description":  "Screws with a smooth shank and tapered point for use in wood. " ,
@@ -40,44 +40,45 @@ function load_data(conn) {
     }
   ], {conflict: "replace"}).run(conn, function(err, result) {
     if(err) throw err;
-    //console.log(JSON.stringify(result, null, 2));
+    cb();
+    // console.log(JSON.stringify(result, null, 2));
   });
 }
 
-function create_table(conn) {
+function create_table(conn, cb) {
   r.db("toolbox").tableList().run(conn, function(err, result) {
     if (err) throw err;
     if(result.indexOf('screws') != -1) {
-      load_data(conn);
+      load_data(conn, cb);
     } else {
       r.db("toolbox").tableCreate("screws").run(conn, function(err, result) {
         if (err) throw err;
-        load_data(conn);
+        load_data(conn, cb);
       });
     }
   });
 }
 
-function create_db(conn) {
+function create_db(conn, cb) {
   r.dbCreate("toolbox").run(conn, function(err, result) {
     if (err) throw err;
-    create_table(conn);
+    create_table(conn, cb);
   });
 }
 
 exercise.addSetup(function(mode, cb) {
   var self = this
-  this.submissionArgs = [3]
-  this.solutionArgs = [3]
+  this.submissionArgs = [700]
+  this.solutionArgs = [700]
   r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
       if (err) throw err;
       connection = conn;
       r.dbList().run(conn, function(err, result) {
         if(err) throw err;
         if(result.indexOf('toolbox') != -1) {
-          create_table(conn);
+          create_table(conn, cb);
         } else {
-          create_db(conn);
+          create_db(conn, cb);
         }
       });
   });
