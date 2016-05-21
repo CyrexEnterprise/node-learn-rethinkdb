@@ -1,9 +1,9 @@
-Install RethinkDB
+Start RethinkDB
 
 -----------------------------------------------------------
 ## HINTS
 
-To install , run `rethinkdb`.
+To start , run `rethinkdb`.
 
 Then, in another terminal, run `npm install rethinkdb`.
 

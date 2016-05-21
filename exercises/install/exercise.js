@@ -20,9 +20,10 @@ exercise.addProcessor(function(mode, cb) {
     }
 
     var matches = stdout.match(/rethinkdb \d\.\d\.\d/);
+    var vers;
 
     if (matches) {
-      var vers = matches[0];
+      vers = matches[0];
       this.emit('pass', vers);
     } else {
       this.emit('fail', 'Invalid output from rethinkdb');
