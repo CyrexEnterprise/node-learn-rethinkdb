@@ -1,1 +1,1 @@
-[ "connect", "adddata", "getdata", "changefeeds" ]
+[ "connect", "createdb", "createtable", "adddata", "getdata", "listdata", "pagination", "changefeeds" ]
