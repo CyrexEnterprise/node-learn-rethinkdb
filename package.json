@@ -1,0 +1,22 @@
+{
+  "name": "node-learn-rethinkdb",
+  "version": "0.0.1",
+  "description": "NodeSchool workshop on ReThinkDB",
+  "bin": {
+    "learnrethinkdb": "learnrethinkdb.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricmalta/node-learn-rethinkdb.git"
+  },
+  "keywords": [
+    "workshop",
+    "rethinkdb",
+    "nodeschool"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ricmalta/node-learn-rethinkdb/issues"
+  },
+  "homepage": "https://github.com/ricmalta/node-learn-rethinkdb#readme"
+}
