@@ -6,20 +6,16 @@ var opts = {
   title: 'Learn RethinkDB',
   description: 'Learn RethinkDB',
   appDir: __dirname,
-  exerciseDir: fpath('./exercises'),
-  footerFile: fpath('footer.md'),
+  exerciseDir: path.join(__dirname, './exercises'),
+  footerFile: path.join(__dirname, 'footer.md'),
   languages: ['en']
 }
 
 if (process.platform !== 'win32') {
   opts.menu = {
-    bg: 15
-  , fg: 'black'
+    bg: 15,
+    fg: 'black'
   }
 }
 
-workshopper(opts)
-
-function fpath (f) {
-  return path.join(__dirname, f)
-}
+workshopper(opts);
