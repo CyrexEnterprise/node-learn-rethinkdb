@@ -15,6 +15,6 @@ exercise.addProcessor(function(mode, cb) {
     self.emit('pass', 'Successfully connected to RethinkDB')
     cb(null, true);
   })
-})
+});
 
 module.exports = exercise
