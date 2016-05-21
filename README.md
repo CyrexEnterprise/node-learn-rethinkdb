@@ -1,1 +1,1 @@
-# Nodeschool workshop on  ReThinkDB
+# Nodeschool workshop on RethinkDB
