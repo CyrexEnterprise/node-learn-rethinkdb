@@ -1,5 +1,4 @@
-var Exercise = require('workshopper-exercise');
-var exercise = new Exercise()
+var exercise = require('workshopper-exercise')();
 
 var r = require('rethinkdb');
 
