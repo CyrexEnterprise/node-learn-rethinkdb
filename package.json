@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/ricmalta/node-learn-rethinkdb/issues"
   },
-  "homepage": "https://github.com/ricmalta/node-learn-rethinkdb#readme"
+  "homepage": "https://github.com/ricmalta/node-learn-rethinkdb#readme",
+  "dependencies": {
+    "rethinkdb": "^2.3.1",
+    "workshopper": "^2.7.0",
+    "workshopper-exercise": "^2.7.0"
+  }
 }
