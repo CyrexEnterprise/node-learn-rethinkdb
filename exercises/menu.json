@@ -1,1 +1,1 @@
-[ "connect" ]
+[ "connect", "adddata", "getdata", "changefeeds" ]
