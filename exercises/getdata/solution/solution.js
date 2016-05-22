@@ -8,7 +8,9 @@ r.connect( {host: 'localhost', db: "toolbox", port: 28015}, function(err, conn) 
         if(err) throw err;
         cursor.toArray( function(error, results) {
           console.log(results);
-          conn.close();
+          conn.close(function(err) {
+            if (err) throw err;
+          });
         });
       });
 });
