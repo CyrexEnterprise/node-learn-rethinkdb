@@ -1,1 +1,1 @@
-[ "install", "connect", "createdb", "createtable", "insert", "getdata", "listdata", "pagination", "changefeeds" ]
+[ "Install", "Connect", "Create DB", "Create table", "Data modeling", "Insert", "Get", "List", "Pagination", "Change Feeds"  ]
