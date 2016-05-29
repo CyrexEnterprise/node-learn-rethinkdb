@@ -21,7 +21,8 @@ To create a table (a collection of JSON documents) in a table, one can use
 These functions create an query object that you will need to run.
 
 ```js
-var query = r.dbCreate('toolbox').run(function callback(error, result) {
+var query = r.dbCreate('toolbox');
+query.run(function callback(error, result) {
   // callback for when the database is created (or incase of error)
 });
 ```
