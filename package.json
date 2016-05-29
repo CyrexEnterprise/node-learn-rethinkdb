@@ -14,6 +14,9 @@
     "rethinkdb",
     "nodeschool"
   ],
+  "scripts": {
+    "lint": "eslint ."
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ricmalta/node-learn-rethinkdb/issues"
@@ -23,5 +26,8 @@
     "rethinkdb": "^2.3.1",
     "workshopper": "^2.7.0",
     "workshopper-exercise": "^2.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.11.0"
   }
 }

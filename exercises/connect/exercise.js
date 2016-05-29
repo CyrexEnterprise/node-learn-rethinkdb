@@ -6,14 +6,16 @@ exercise.requireSubmission = false;
 
 exercise.addProcessor(function(mode, cb) {
   var self = this;
-  r.connect({ host: 'localhost', port: 28015 }, function(err, conn) {
+  r.connect(function(err, connection) {
     if (err) {
-      return self.emit('fail', 'Error connecting to RethinkDB. ' + err.message);
+      self.emit('fail', 'Error connecting to RethinkDB: ' + err.message);
+      return cb(null, false);
     }
-
-    self.emit('pass', 'Successfully connected to RethinkDB')
-    cb(null, true);
-  })
+    self.emit('pass', 'Successfully connected to RethinkDB');
+    connection.close(function(err) {
+      cb(err, true);
+    });
+  });
 });
 
-module.exports = exercise
+module.exports = exercise;

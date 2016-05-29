@@ -1,1 +1,2 @@
-const Exercise = require('workshopper-exercise'); module.exports = new Exercise()
+const exercise = require('workshopper-exercise')();
+module.exports = exercise;

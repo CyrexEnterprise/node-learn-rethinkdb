@@ -4,33 +4,33 @@ var connection;
 
 exercise.requireSubmission = false;
 
-exercise.addSetup(function(mode, callback){
+exercise.addSetup(function(mode, callback) {
 
-    r.connect({ host: "localhost" }, function(err, conn) {
-        if( err )
-            throw err;
+  r.connect({ host: "localhost" }, function(err, conn) {
+    if (err)
+      throw err;
 
-        connection = conn;
+    connection = conn;
 
-        process.nextTick(callback);
-    });
+    process.nextTick(callback);
+  });
 });
 
 exercise.addProcessor(function(mode, callback) {
 
-    var pass = false;
+  var pass = false;
 
-    r.db('toolbox').tableList().run(connection, function(err, res){
+  r.db('toolbox').tableList().run(connection, function(err, res) {
 
-        if( err ){
-            this.emit("fail", err);
-            connection.close();
-        }
+    if (err) {
+      this.emit("fail", err);
+      connection.close();
+    }
 
-        pass = res.indexOf('screws') > -1;
+    pass = res.indexOf('screws') > -1;
 
-        return callback(null, pass);
-    });
+    return callback(null, pass);
+  });
 });
 
 module.exports = exercise;

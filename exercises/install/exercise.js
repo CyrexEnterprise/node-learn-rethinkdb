@@ -4,14 +4,15 @@ var exec = require('child_process').exec;
 exercise.requireSubmission = false;
 
 exercise.addProcessor(function(mode, cb) {
-  var filename = process.platform === 'win32'
-    ? 'rethinkdb.exe'
-    : 'rethinkdb'
-  var errmsg = 'It doesn\'t look like rethinkdb is installed and in your $PATH';
+  var filename = process.platform === 'win32' ?
+    'rethinkdb.exe' : 'rethinkdb';
 
-  exec(filename + ' --version', function(err, stdout, stderr) {
+  exec(filename + ' --version', function(err, stdout) {
     if (err) {
-      return this.emit('fail', errmsg);
+      this.emit('fail',
+        'It doesn\'t look like rethinkdb is installed and in your $PATH'
+      );
+      return cb(null, false);
     }
 
     if (mode === 'run') {
@@ -24,13 +25,12 @@ exercise.addProcessor(function(mode, cb) {
 
     if (matches) {
       vers = matches[0];
-      this.emit('pass', vers);
+      this.emit('pass', 'RethinkDB successfully installed.');
     } else {
-      this.emit('fail', 'Invalid output from rethinkdb');
+      this.emit('fail', 'Invalid output from RethinkDB.');
     }
-
     cb(null, !!vers);
-  }.bind(this)).stdin.end()
-})
+  }.bind(this)).stdin.end();
+});
 
-module.exports = exercise
+module.exports = exercise;

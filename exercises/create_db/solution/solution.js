@@ -1,18 +1,13 @@
-// solution stuff here
-
 var r = require('rethinkdb');
 
-r.connect({ host: "localhost" }, function(err, conn) {
-    if( err )
-        throw err;
+r.connect(function(err, conn) {
+  if (err) throw err;
 
-    r.dbCreate('toolbox').run(conn, function(err, res){
-        if( err )
-            console.error("Error:",err);
+  r.dbCreate('toolbox').run(conn, function(err, res) {
+    if (err) throw err;
 
-        conn.close(function(err) {
-                if (err)
-                    throw err;
-            });
-    });
+    console.log(res);
+
+    conn.close();
+  });
 });
