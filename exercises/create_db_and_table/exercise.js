@@ -45,7 +45,7 @@ exercise.addProcessor(function(mode, callback) {
 
       if (!~res.indexOf('toolbox')) {
         self.emit('fail', 'toolbox database is nowhere to be found');
-        callback(null, false);
+        return callback(null, false);
       }
 
       self.emit('pass', 'toolbox database created');
@@ -58,7 +58,7 @@ exercise.addProcessor(function(mode, callback) {
 
       if (!~res.indexOf('screws')) {
         self.emit('fail', 'screws table is nowhere to be found');
-        callback(null, false);
+        return callback(null, false);
       }
 
       self.emit('pass', 'screws table created');
