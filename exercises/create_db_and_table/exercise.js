@@ -12,7 +12,6 @@ exercise = execute(exercise);
 
 // make sure toolbox database doesn't exist
 exercise.addSetup(function(mode, callback) {
-
   r.connect(function(err, conn) {
     if (err) return callback(err);
 
@@ -33,7 +32,8 @@ exercise.addSetup(function(mode, callback) {
 exercise.addProcessor(function(mode, callback) {
   var self = this;
 
-  this.submissionStdout.pipe(process.stdout);
+  this.submissionChild.stdout.pipe(process.stdout);
+  this.submissionChild.stderr.pipe(process.stderr);
 
   this.on('executeEnd', mode === 'verify' ? verify : callback);
 
@@ -69,7 +69,7 @@ exercise.addProcessor(function(mode, callback) {
 });
 
 exercise.addCleanup(function(mode, callback) {
-  connection.close(callback);
+  if(connection) connection.close(callback);
 });
 
 module.exports = exercise;
