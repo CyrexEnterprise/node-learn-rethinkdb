@@ -1,3 +1,5 @@
+# Create a Database and a Table
+
 Here we will learn how to create a database named `toolbox` and in this
 database create a table named `screws`.
 
@@ -23,7 +25,7 @@ These functions create an query object that you will need to run.
 ```js
 var query = r.dbCreate('toolbox');
 query.run(function callback(error, result) {
-  // callback for when the database is created (or incase of error)
+  // callback for when the database is created (or in case of error)
 });
 ```
 
@@ -38,7 +40,7 @@ have finished.
 
 ## Resources:
 
-* https://www.rethinkdb.com/api/javascript/connect/
-* https://www.rethinkdb.com/api/javascript/run/
-* https://www.rethinkdb.com/api/javascript/db_create/
-* https://www.rethinkdb.com/api/javascript/table_create/
+* Connect: https://www.rethinkdb.com/api/javascript/connect/
+* Run: https://www.rethinkdb.com/api/javascript/run/
+* Create Database: https://www.rethinkdb.com/api/javascript/db_create/
+* Create Table: https://www.rethinkdb.com/api/javascript/table_create/
