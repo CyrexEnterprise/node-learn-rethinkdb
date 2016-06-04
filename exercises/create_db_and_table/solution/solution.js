@@ -6,17 +6,17 @@ function onceConnect(err, connection) {
   if (err) throw err;
 
   r.dbCreate('toolbox')
-    .run(connection, onceDBCreate);
+    .run(connection, onDBCreate);
 
-  function onceDBCreate(err) {
+  function onDBCreate(err) {
     if (err) throw err;
 
     r.db('toolbox')
       .tableCreate('screws')
-      .run(connection, onceTableCreate);
+      .run(connection, onTableCreate);
   }
 
-  function onceTableCreate(err) {
+  function onTableCreate(err) {
     if (err) throw err;
 
     connection.close();

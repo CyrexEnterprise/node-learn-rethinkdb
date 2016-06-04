@@ -1,6 +1,6 @@
 # Learn RethinkDB
 
-A RethinkDB [workshopper](https://github.com/workshopper/workshopper), learn
+A RethinkDB [workshopper](https://github.com/workshopper/workshopper): learn
 how to use [RethinkDB](https://rethinkdb.com) with the
 [Javascript Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/javascript).
 
