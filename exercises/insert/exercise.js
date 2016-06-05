@@ -9,26 +9,22 @@ exercise = filecheck(exercise);
 exercise = utils.executeSubmission(exercise);
 
 var characters = [{
-  firstName: 'Rick',
-  lastName: 'Sanchez'
+  firstName: 'Stan',
+  lastName: 'Marsh'
 }, {
-  firstName: 'Morty',
-  lastName: 'Smith'
+  firstName: 'Kyle',
+  lastName: 'Broflovski'
 }, {
-  firstName: 'Summer',
-  lastName: 'Smith'
+  firstName: 'Eric',
+  lastName: 'Cartman'
 }, {
-  firstName: 'Jerry',
-  lastName: 'Smith'
-}, {
-  firstName: 'Beth',
-  lastName: 'Smith'
+  firstName: 'Kenny',
+  lastName: 'McCormick'
 }];
 
-var character = null;
+var character = utils.pickRandom(characters);
 
 exercise.addSetup(function(mode, cb) {
-  character = utils.pickRandom(characters);
   this.submissionArgs = [character.firstName, character.lastName];
 
   r.connect(onConnect);
@@ -37,17 +33,13 @@ exercise.addSetup(function(mode, cb) {
     if (err) return cb(err);
     connection = conn;
 
-    r.dbList().contains('RickAndMorty')
-      .do(function(databaseExists) {
-        return r.branch(databaseExists, { dbs_created: 0 },
-          r.dbCreate('RickAndMorty'));
-      }).run(connection, onDBCreate);
+    utils.ensureDatabase(connection, 'SouthPark', onDBCreate);
   }
 
   function onDBCreate(err) {
     if (err) return cb(err);
 
-    connection.use('RickAndMorty');
+    connection.use('SouthPark');
 
     r.tableList().contains('characters')
       .do(function(tableExists) {
@@ -56,7 +48,6 @@ exercise.addSetup(function(mode, cb) {
       }).run(connection, cb);
   }
 });
-
 
 exercise.addProcessor(function(mode, callback) {
   var self = this;
@@ -94,12 +85,7 @@ exercise.addProcessor(function(mode, callback) {
 
 exercise.addCleanup(function(mode, pass, cb) {
   if (!connection) return cb();
-
-  utils.removeDatabase(connection, 'RickAndMorty',
-    function(err) {
-      if (err) return cb(err);
-      connection.close(cb);
-    });
+  connection.close(cb);
 });
 
 module.exports = exercise;

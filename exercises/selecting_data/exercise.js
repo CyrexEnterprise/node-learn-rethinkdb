@@ -42,17 +42,13 @@ exercise.addSetup(function(mode, cb) {
   this.submissionArgs = [value];
   this.solutionArgs = [value];
 
-  r.connect({ host: 'localhost', port: 28015 }, onConnect);
+  r.connect(onConnect);
 
   function onConnect(err, conn) {
     if (err) return cb(err);
     connection = conn;
 
-    r.dbList().contains('toolbox')
-      .do(function(databaseExists) {
-        return r.branch(databaseExists, { dbs_created: 0 },
-          r.dbCreate('toolbox'));
-      }).run(connection, onDBCreate);
+    utils.ensureDatabase(connection, 'toolbox', onDBCreate);
   }
 
   function onDBCreate(err) {
@@ -60,19 +56,7 @@ exercise.addSetup(function(mode, cb) {
 
     connection.use('toolbox');
 
-    r.tableList().contains('screws')
-      .do(function(tableExists) {
-        return r.branch(tableExists, { tables_created: 0 },
-          r.tableCreate('screws'));
-      }).run(connection, onTableCreate);
-  }
-
-  function onTableCreate(err) {
-    if (err) return cb(err);
-
-    r.table('screws')
-      .insert(screws, { conflict: 'replace' })
-      .run(connection, cb);
+    utils.loadTable(connection, 'screws', screws, cb);
   }
 });
 

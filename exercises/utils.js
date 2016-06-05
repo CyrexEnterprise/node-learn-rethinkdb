@@ -62,8 +62,41 @@ function removeDatabase(connection, database, callback) {
     }).run(connection, callback);
 }
 
+
+function ensureTable(connection, table, callback) {
+  r.tableList().contains(table)
+    .do(function(tableExists) {
+      return r.branch(tableExists, { tables_created: 0 },
+        r.tableCreate(table));
+    }).run(connection, callback);
+}
+
+function ensureDatabase(connection, database, callback) {
+  r.dbList().contains(database)
+    .do(function(databaseExists) {
+      return r.branch(databaseExists, { dbs_created: 0 },
+        r.dbCreate(database));
+    }).run(connection, callback);
+}
+
+
+function loadTable(connection, table, data, opts, callback) {
+  if (!opts || typeof opts === 'function') {
+    return loadTable(connection, table, data, { conflict: 'replace' }, opts);
+  }
+
+  ensureTable(connection, table, function(err) {
+    if (err) return callback(err);
+    r.table(table)
+      .insert(data, opts)
+      .run(connection, callback);
+  });
+}
 module.exports = {
   executeSubmission: executeSubmission,
   pickRandom: pickRandom,
-  removeDatabase: removeDatabase
+  removeDatabase: removeDatabase,
+  ensureDatabase: ensureDatabase,
+  ensureTable: ensureTable,
+  loadTable: loadTable
 };

@@ -5,7 +5,7 @@ var character = {
   lastName: process.argv[3]
 };
 
-r.connect({ db: 'RickAndMorty' }, onConnect);
+r.connect({ db: 'SouthPark' }, onConnect);
 
 function onConnect(err, connection) {
   if (err) throw err;

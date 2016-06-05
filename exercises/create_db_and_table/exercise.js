@@ -15,7 +15,6 @@ var database;
 var table;
 
 exercise.addSetup(function(mode, callback) {
-  var self = this;
 
   database = utils.pickRandom(names);
   table = utils.pickRandom(names.filter(function(name) {
@@ -42,7 +41,6 @@ exercise.addProcessor(function(mode, callback) {
   this.once('executeEnd', mode === 'verify' ? verify : callback);
 
   function verify() {
-    console.log('asd');
     r.dbList()
       .contains(database)
       .run(connection, verifyDatabase);
@@ -80,12 +78,7 @@ exercise.addProcessor(function(mode, callback) {
 
 exercise.addCleanup(function(mode, pass, cb) {
   if (!connection) return cb();
-
-  utils.removeDatabase(connection, database,
-    function(err) {
-      if (err) return cb(err);
-      connection.close(cb);
-    });
+  connection.close(cb);
 });
 
 module.exports = exercise;
