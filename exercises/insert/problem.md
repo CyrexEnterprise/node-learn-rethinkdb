@@ -1,12 +1,10 @@
 Let's insert a document into our database.
 
-Use the table `characters` and the database `RickAndMorty`.
+Use the table `characters` and the database `SouthPark`.
 The document should have the following properties:
 
 * firstName (passed as first argument to your script)
 * lastName (passed as second argument to your script)
-
-Use `console.log` to print to `stdout`.
 
 -----------------------------------------------------------
 ## HINTS
@@ -14,11 +12,11 @@ Use `console.log` to print to `stdout`.
 To insert a document in a table you can run something this:
 
 ```javascript
-r.db('RickAndMorty')
+r.db('SouthPark')
   .table('characters')
   .insert({
-    firstName: 'Morty',
-    lastName: 'Smith'
+    firstName: 'Eric',
+    lastName: 'Cartman'
   }).run(connection, callback);
 ```
 
