@@ -69,12 +69,12 @@ var burps = [
 ];
 
 burps = burps.map(function(burp) {
-  burp.duration = Math.floor(Math.random() * 2000) + 300;
+  burp.duration = utils.pickRandom(2000) + 300;
   return burp;
 });
 
 episodes = episodes.map(function(episode) {
-  var burpCount = Math.floor(Math.random() * 16);
+  var burpCount = utils.pickRandom(20);
 
   episode.burps = [];
 

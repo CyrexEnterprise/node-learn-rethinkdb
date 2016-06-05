@@ -48,10 +48,13 @@ function executeSubmission(exercise, opts) {
   return exercise;
 }
 
-function pickRandom(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
+function pickRandom(data) {
+  if (data instanceof Array || typeof data === 'string') {
+    return data[Math.floor(Math.random() * data.length)];
+  }
 
+  return Math.floor(Math.random() * data);
+}
 
 function removeDatabase(connection, database, callback) {
   r.dbList()
