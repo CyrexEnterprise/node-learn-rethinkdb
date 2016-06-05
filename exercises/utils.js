@@ -3,6 +3,8 @@ var spawn = require('child_process').spawn;
 var r = require('rethinkdb');
 
 function executeSubmission(exercise, opts) {
+  if (!opts) opts = {};
+
   /**
    *  overwrite default execute processor with a
    *  processor that only executes the submission
