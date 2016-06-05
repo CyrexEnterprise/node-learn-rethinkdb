@@ -1,5 +1,3 @@
-# Create a Database and a Table
-
 Here we will learn how to create a database named `toolbox` and in this
 database create a table named `screws`.
 

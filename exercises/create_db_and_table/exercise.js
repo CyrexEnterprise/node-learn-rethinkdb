@@ -68,8 +68,8 @@ exercise.addProcessor(function(mode, callback) {
   }
 });
 
-exercise.addCleanup(function(mode, callback) {
-  if(connection) connection.close(callback);
+exercise.addCleanup(function(mode, pass, cb) {
+  if(connection) connection.close(cb);
 });
 
 module.exports = exercise;

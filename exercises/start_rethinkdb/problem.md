@@ -1,5 +1,3 @@
-# Start a RethinkDB server instance.
-
 Now that we have RethinkDB installed let's start it.
 
 -----------------------------------------------------------

@@ -1,5 +1,3 @@
-# Installation
-
 Now before we start let's make sure we have RethinkDB installed.
 
 To move on to the next task run `learnrethinkdb verify`
