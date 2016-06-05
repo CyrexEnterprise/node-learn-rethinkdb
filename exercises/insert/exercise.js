@@ -93,13 +93,13 @@ exercise.addProcessor(function(mode, callback) {
 });
 
 exercise.addCleanup(function(mode, pass, cb) {
-  if (connection) {
-    utils.removeDatabase(connection, 'RickAndMorty',
-      function(err) {
-        if (err) return cb(err);
-        connection.close(cb);
-      });
-  }
+  if (!connection) return cb();
+
+  utils.removeDatabase(connection, 'RickAndMorty',
+    function(err) {
+      if (err) return cb(err);
+      connection.close(cb);
+    });
 });
 
 module.exports = exercise;

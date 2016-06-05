@@ -77,7 +77,9 @@ exercise.addSetup(function(mode, cb) {
 });
 
 exercise.addCleanup(function(mode, pass, cb) {
-  if (connection) connection.close(cb);
+  if (!connection) return cb();
+
+  connection.close(cb);
 });
 
 module.exports = exercise;
