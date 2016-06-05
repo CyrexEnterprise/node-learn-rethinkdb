@@ -41,14 +41,14 @@ function pickRandom(array) {
 }
 
 exercise.addSetup(function(mode, cb) {
-  var self = this;
   var value = pickRandom(values);
   this.submissionArgs = [value];
   this.solutionArgs = [value];
+
   r.connect({ host: 'localhost', port: 28015 }, onConnect);
 
   function onConnect(err, conn) {
-    if (err) throw err;
+    if (err) return cb(err);
     connection = conn;
 
     r.dbList().contains('toolbox')
@@ -59,7 +59,7 @@ exercise.addSetup(function(mode, cb) {
   }
 
   function onDBCreate(err) {
-    if (err) throw err;
+    if (err) return cb(err);
 
     connection.use('toolbox');
 
@@ -71,7 +71,7 @@ exercise.addSetup(function(mode, cb) {
   }
 
   function onTableCreate(err) {
-    if (err) throw err;
+    if (err) return cb(err);
 
     r.table('screws')
       .insert(screws, { conflict: 'replace' })
