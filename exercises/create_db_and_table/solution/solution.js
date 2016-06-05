@@ -1,18 +1,21 @@
 var r = require('rethinkdb');
 
-r.connect(onceConnect);
+var database = process.argv[2];
+var table = process.argv[3];
 
-function onceConnect(err, connection) {
+r.connect(onConnect);
+
+function onConnect(err, connection) {
   if (err) throw err;
 
-  r.dbCreate('toolbox')
+  r.dbCreate(database)
     .run(connection, onDBCreate);
 
   function onDBCreate(err) {
     if (err) throw err;
 
-    r.db('toolbox')
-      .tableCreate('screws')
+    r.db(database)
+      .tableCreate(table)
       .run(connection, onTableCreate);
   }
 

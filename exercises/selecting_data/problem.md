@@ -2,6 +2,7 @@ Here we will learn how to search tables and selecting data from them.
 
 In this exercise the database is `toolbox`. Use the table `screws` to find all
 screws with `quantity` higher than the first argument passed to your script.
+
 Use `console.log` to print to `stdout`.
 
 -----------------------------------------------------------
@@ -17,11 +18,8 @@ The table and database are created for you before your when you run your
 solution. Also we will be throwing a random value to your solution which you
 will need to use.
 
-To access the arguments you can use the `process.argv` array of strings. Use
-the argument at index 2.
-To convert to an integer, you can use parseInt().
-
-`parseInt(process.argv[2])`
+To access the arguments you can use the `process.argv` array of strings.
+To convert to an integer, you can use `parseInt`.
 
 To find a document or documents by some field you can use filter.
 

@@ -1,8 +1,19 @@
-Here we will learn how to create a database named `toolbox` and in this
-database create a table named `screws`.
+Here we will learn how to create a database and in this
+database create a table.
+
+The database and table names will be given to the script arguments, first the
+database then the table name.
 
 -----------------------------------------------------------
 ## HINTS
+
+Get the database name and table name from the script arguments, with something
+like this:
+
+```javascript
+var database = process.argv[2];
+var table = process.argv[3];
+```
 
 To connect to the database, one can use something like this:
 
@@ -21,7 +32,7 @@ To create a table (a collection of JSON documents) in a table, one can use
 These functions create an query object that you will need to run.
 
 ```js
-var query = r.dbCreate('toolbox');
+var query = r.dbCreate('nodeschool');
 query.run(function callback(error, result) {
   // callback for when the database is created (or in case of error)
 });
@@ -29,7 +40,7 @@ query.run(function callback(error, result) {
 
 Note that creating a database or table that already exists will callback with
 an error. But you don't have to worry about this since we will make
-sure that there's no `toolbox` database before running your program, that is
+sure that there's no database before running your program, that is
 only if you are using `learnrethinkdb run yoursolution.js` to run it.
 
 If your program does not finish executing, you may have forgotten to
