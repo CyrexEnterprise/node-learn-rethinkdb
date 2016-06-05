@@ -1,1 +1,2 @@
-["Install", "Start RethinkDB", "Create DB and Table", "Data Modeling", "Insert", "Selecting Data", "List", "Pagination", "Change Feeds"]
+["Install", "Start RethinkDB", "Create DB and Table", "Data Modeling", "Insert", "Selecting Data", "Aggregate and Update", "List", "Pagination",
+  "Change Feeds"]
