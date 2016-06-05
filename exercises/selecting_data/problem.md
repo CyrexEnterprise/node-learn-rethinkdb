@@ -14,7 +14,8 @@ r.db('RethinkDB').table('users').run(connection, callback);
 ```
 
 The table and database are created for you before your when you run your
-solution.
+solution. Also we will be throwing a random value to your solution which you
+will need to use.
 
 To access the arguments you can use the `process.argv` array of strings. Use
 the argument at index 2.

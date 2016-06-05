@@ -51,47 +51,36 @@ exercise.addSetup(function(mode, cb) {
     if (err) throw err;
     connection = conn;
 
-    r.dbList().run(conn, onList);
-  }
-
-  function onList(err, result) {
-    if (err) throw err;
-
-    if (result.indexOf('toolbox') !== -1) {
-      r.dbDrop('toolbox').run(connection, function(err) {
-        if(err) throw err;
-        setup();
-      });
-    } else {
-      setup();
-    }
-  }
-
-  function setup() {
-    r.dbCreate('toolbox')
-      .run(connection, onDBCreate);
-
-    connection.use('toolbox');
+    r.dbList().contains('toolbox')
+      .do(function(databaseExists) {
+        return r.branch(databaseExists, { dbs_created: 0 },
+          r.dbCreate('toolbox'));
+      }).run(connection, onDBCreate);
   }
 
   function onDBCreate(err) {
     if (err) throw err;
 
-    r.tableCreate('screws')
-      .run(connection, onTableCreate);
+    connection.use('toolbox');
+
+    r.tableList().contains('screws')
+      .do(function(tableExists) {
+        return r.branch(tableExists, { tables_created: 0 },
+          r.tableCreate('screws'));
+      }).run(connection, onTableCreate);
   }
 
   function onTableCreate(err) {
     if (err) throw err;
 
     r.table('screws')
-      .insert(screws)
+      .insert(screws, { conflict: 'replace' })
       .run(connection, cb);
   }
 });
 
 exercise.addCleanup(function(mode, pass, cb) {
-  if(connection) connection.close(cb);
+  if (connection) connection.close(cb);
 });
 
 module.exports = exercise;
