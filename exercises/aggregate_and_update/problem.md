@@ -80,3 +80,4 @@ random values.
 * Update: https://www.rethinkdb.com/api/javascript/update/
 * Count: https://www.rethinkdb.com/api/javascript/count/
 * Sum: https://www.rethinkdb.com/api/javascript/sum/
+* Bracket: https://rethinkdb.com/api/javascript/bracket/
