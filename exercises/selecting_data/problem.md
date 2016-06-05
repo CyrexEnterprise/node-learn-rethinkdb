@@ -14,9 +14,9 @@ To get the all the documents in a table you can run something this:
 r.db('RethinkDB').table('users').run(connection, callback);
 ```
 
-The table and database are created for you before your when you run your
-solution. Also we will be throwing a random value to your solution which you
-will need to use.
+The table and database are created for you before you run your solution.
+Also we will be throwing a random value to your solution which you will
+need to use.
 
 To access the arguments you can use the `process.argv` array of strings.
 To convert to an integer, you can use `parseInt`.
