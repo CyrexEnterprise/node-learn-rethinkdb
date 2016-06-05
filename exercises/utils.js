@@ -40,7 +40,7 @@ function executeSubmission(exercise, opts) {
   }
 
   // remove standard execute processor
-  exercise._processors.shift();
+  exercise._processors.pop();
 
   // add in the new processor
   exercise.addProcessor(onlyExecuteSubmission);
