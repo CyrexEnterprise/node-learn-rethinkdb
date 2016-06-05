@@ -2,7 +2,8 @@ var r = require('rethinkdb'),
   exercise = require('workshopper-exercise')(),
   filecheck = require('workshopper-exercise/filecheck'),
   execute = require('workshopper-exercise/execute'),
-  comparestdout = require('workshopper-exercise/comparestdout');
+  comparestdout = require('workshopper-exercise/comparestdout'),
+  utils = require('../utils');
 
 var connection = null;
 
@@ -36,12 +37,8 @@ var screws = [{
 
 var values = [675, 1220, 2131, 4500];
 
-function pickRandom(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
-
 exercise.addSetup(function(mode, cb) {
-  var value = pickRandom(values);
+  var value = utils.pickRandom(values);
   this.submissionArgs = [value];
   this.solutionArgs = [value];
 
