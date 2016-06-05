@@ -10,22 +10,16 @@ exercise = filecheck(exercise);
 
 exercise = execute(exercise);
 
-// make sure toolbox database doesn't exist
 exercise.addSetup(function(mode, callback) {
   r.connect(function(err, conn) {
     if (err) return callback(err);
 
     connection = conn;
 
-    r.dbList().run(conn, function(err, res) {
-      if (err) return callback(err);
-
-      if (!~res.indexOf('toolbox')) {
-        return callback();
-      }
-
-      r.dbDrop('toolbox').run(conn, callback);
-    });
+    // make sure toolbox database doesn't exist
+    r.dbList().contains('toolbox').do(function(databaseExists) {
+      return r.branch(databaseExists, r.dbDrop('toolbox'), { dbs_dropped: 0 });
+    }).run(connection, callback);
   });
 });
 
@@ -38,25 +32,30 @@ exercise.addProcessor(function(mode, callback) {
   this.on('executeEnd', mode === 'verify' ? verify : callback);
 
   function verify() {
-    r.dbList().run(connection, verifyDatabase);
+    r.dbList()
+      .contains('toolbox')
+      .run(connection, verifyDatabase);
 
-    function verifyDatabase(err, res) {
+    function verifyDatabase(err, databaseExists) {
       if (err) return callback(err);
 
-      if (!~res.indexOf('toolbox')) {
+      if (!databaseExists) {
         self.emit('fail', 'toolbox database is nowhere to be found');
         return callback(null, false);
       }
 
       self.emit('pass', 'toolbox database created');
 
-      r.db('toolbox').tableList().run(connection, verifyTable);
+      r.db('toolbox')
+        .tableList()
+        .contains('screws')
+        .run(connection, verifyTable);
     }
 
-    function verifyTable(err, res) {
+    function verifyTable(err, tableExists) {
       if (err) return callback(err);
 
-      if (!~res.indexOf('screws')) {
+      if (!tableExists) {
         self.emit('fail', 'screws table is nowhere to be found');
         return callback(null, false);
       }
@@ -69,7 +68,7 @@ exercise.addProcessor(function(mode, callback) {
 });
 
 exercise.addCleanup(function(mode, pass, cb) {
-  if(connection) connection.close(cb);
+  if (connection) connection.close(cb);
 });
 
 module.exports = exercise;
