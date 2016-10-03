@@ -2,7 +2,8 @@ var r = require('rethinkdb');
 
 var character = {
   firstName: process.argv[2],
-  lastName: process.argv[3]
+  lastName: process.argv[3],
+  age: process.argv[4]
 };
 
 r.connect({ db: 'SouthPark' }, onConnect);

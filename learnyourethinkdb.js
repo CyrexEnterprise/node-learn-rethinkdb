@@ -2,7 +2,7 @@ var workshopper = require('workshopper');
 var path = require('path');
 
 var opts = {
-  name: 'learnrethinkdb',
+  name: 'learnyourethinkdb',
   title: 'Learn RethinkDB',
   description: 'Learn RethinkDB',
   appDir: __dirname,

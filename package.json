@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "NodeSchool workshop on ReThinkDB",
   "bin": {
-    "learnrethinkdb": "learnrethinkdb.js"
+    "learnyourethinkdb": "learnyourethinkdb.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ricmalta/node-learn-rethinkdb.git"
+    "url": "git+https://github.com/Cloudoki/node-learn-rethinkdb.git"
   },
   "keywords": [
     "workshop",
@@ -19,9 +19,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ricmalta/node-learn-rethinkdb/issues"
+    "url": "https://github.com/Cloudoki/node-learn-rethinkdb/issues"
   },
-  "homepage": "https://github.com/ricmalta/node-learn-rethinkdb#readme",
+  "homepage": "https://github.com/Cloudoki/node-learn-rethinkdb#readme",
   "dependencies": {
     "rethinkdb": "^2.3.1",
     "workshopper": "^2.7.0",

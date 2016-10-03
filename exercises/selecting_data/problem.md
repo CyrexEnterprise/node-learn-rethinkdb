@@ -1,6 +1,9 @@
 Here we will learn how to search tables and selecting data from them.
 
-In this exercise the database is `toolbox`. Use the table `screws` to find all
+
+In this exercise we will continue to use the `SouthPark` playground, but in
+this case we will get the characters with age above the argument your
+Use the table `characters` and the database `SouthPark`.
 screws with `quantity` higher than the first argument passed to your script.
 
 Use `console.log` to print to `stdout`.

@@ -5,6 +5,7 @@ The document should have the following properties:
 
 * firstName (passed as first argument to your script)
 * lastName (passed as second argument to your script)
+* age (passed as third argument to your script)
 
 -----------------------------------------------------------
 ## HINTS
@@ -16,7 +17,8 @@ r.db('SouthPark')
   .table('characters')
   .insert({
     firstName: 'Eric',
-    lastName: 'Cartman'
+    lastName: 'Cartman',
+    age: 12
   }).run(connection, callback);
 ```
 
@@ -25,7 +27,7 @@ The table and database are created for you before you run your solution.
 We will be throwing a random values to your solution which you
 will need to use.
 
-To access the arguments you can use the `process.argv` array of strings.
+To access the arguments you may use the `process.argv` array of strings.
 
 ## Resources:
 

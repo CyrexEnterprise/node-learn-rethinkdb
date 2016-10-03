@@ -13,34 +13,28 @@ exercise = execute(exercise);
 
 exercise = comparestdout(exercise);
 
-var screws = [{
-  "description": "Screws with a smooth shank and tapered point for use in wood. ",
-  "id": "ca38c2a9-a16d-4803-a493-3b9d409354a6",
-  "quantity": 4567,
-  "type": "wood screws"
+var characters = [{
+  firstName: 'Stan',
+  lastName: 'Marsh',
+  age: 10
 }, {
-  "description": "Machine screws with a thread cutting (self tapping) point.",
-  "id": "f38b75d7-6968-4222-b67a-a6bbf7e2cb34",
-  "quantity": 1222,
-  "type": "thread cutting machine screws"
+  firstName: 'Kyle',
+  lastName: 'Broflovski',
+  age: 11
 }, {
-  "description": "Screws with threads for use with a nut or tapped hole. ",
-  "id": "007c73af-aa41-4d78-bb14-15baf4cd638d",
-  "quantity": 675,
-  "type": "machine screws"
+  firstName: 'Eric',
+  lastName: 'Cartman',
+  age: 12
 }, {
-  "description": "Fully threaded screws with a point for use in sheet metal.",
-  "id": "fd0ef0be-00bb-4fbf-aabf-1dc54d62fd54",
-  "quantity": 2131,
-  "type": "sheet metal screws"
+  firstName: 'Kenny',
+  lastName: 'McCormick',
+  age: 13
 }];
 
-var values = [675, 1220, 2131, 4500];
-
 exercise.addSetup(function(mode, cb) {
-  var value = utils.pickRandom(values);
-  this.submissionArgs = [value];
-  this.solutionArgs = [value];
+
+  this.submissionArgs = characters;
+  this.solutionArgs = characters;
 
   r.connect(onConnect);
 
@@ -48,17 +42,27 @@ exercise.addSetup(function(mode, cb) {
     if (err) return cb(err);
     connection = conn;
 
-    utils.ensureDatabase(connection, 'toolbox', onDBCreate);
+    utils.ensureDatabase(connection, 'SouthPark', onDBCreate);
   }
 
   function onDBCreate(err) {
     if (err) return cb(err);
 
-    connection.use('toolbox');
+    connection.use('SouthPark');
 
-    utils.loadTable(connection, 'screws', screws, cb);
+    utils.loadTable(connection, 'characters', characters, cb);
   }
 });
+
+// exercise.addProcessor(function(mode, callback) {
+//   var self = this;
+//
+//   this.submissionChild.stdout.pipe(process.stdout);
+//   this.submissionChild.stderr.pipe(process.stderr);
+//
+//
+//
+// });
 
 exercise.addCleanup(function(mode, pass, cb) {
   if (!connection) return cb();

@@ -41,7 +41,7 @@ query.run(function callback(error, result) {
 Note that creating a database or table that already exists will callback with
 an error. But you don't have to worry about this since we will make
 sure that there's no database before running your program, that is
-only if you are using `learnrethinkdb run yoursolution.js` to run it.
+only if you are using `learnyourethinkdb run yoursolution.js` to run it.
 
 If your program does not finish executing, you may have forgotten to
 close the `conn`. That can be done by calling `conn.close()` after you

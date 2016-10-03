@@ -8,7 +8,7 @@ To start an instance of RethinkDB, run `rethinkdb`.
 Then, in another terminal, run `npm install rethinkdb` to install the RethinkDB
  client library.
 
-To complete this exercise run `learnrethinkdb verify`. It will attempt to
+To complete this exercise run `learnyourethinkdb verify`. It will attempt to
 connect to RethinkDB on `localhost` and on the default port `28015`.
 
 If this lesson is passed, be sure to leave `rethinkdb` running as it will

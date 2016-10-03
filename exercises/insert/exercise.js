@@ -10,16 +10,20 @@ exercise = utils.executeSubmission(exercise);
 
 var characters = [{
   firstName: 'Stan',
-  lastName: 'Marsh'
+  lastName: 'Marsh',
+  age: 10
 }, {
   firstName: 'Kyle',
-  lastName: 'Broflovski'
+  lastName: 'Broflovski',
+  age: 11
 }, {
   firstName: 'Eric',
-  lastName: 'Cartman'
+  lastName: 'Cartman',
+  age: 12
 }, {
   firstName: 'Kenny',
-  lastName: 'McCormick'
+  lastName: 'McCormick',
+  age: 13
 }];
 
 var character = utils.pickRandom(characters);

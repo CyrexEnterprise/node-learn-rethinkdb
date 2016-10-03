@@ -9,7 +9,7 @@ how to use [RethinkDB](https://rethinkdb.com) with the
 ### Install
 
 ```
-npm install -g learnrethinkdb
+npm install -g learnyourethinkdb
 ```
 
 ### How to use
@@ -17,7 +17,7 @@ npm install -g learnrethinkdb
 After installing the workshop run this command:
 
 ```
-learnrethinkdb
+learnyourethinkdb
 ```
 
 You will be presented with a menu: start from the top and move on to the next
